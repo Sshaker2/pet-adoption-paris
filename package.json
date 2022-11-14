@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "seed": "node bin/pets.seed.js",
     "start": "node server.js",
     "dev": "nodemon -e js,hbs server.js"
   },
