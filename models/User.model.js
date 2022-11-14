@@ -9,12 +9,21 @@ const userSchema = new Schema(
       unique: true,
       trim: true,
     },
+    profilePic: {
+      type: String,
+      default: 'someurlhere',
+    },
     email: {
       type: String,
       required: true,
       unique: true,
       trim: true,
       lowercase: true,
+    },
+    phoneNumber: {
+      type: Number,
+      required: true,
+      unique: true,
     },
     password: {
       type: String,
