@@ -1,7 +1,7 @@
 <h1>{{onePet.name}}</h1>
 <div class="card">
   <picture>
-    <img src="{{onePet.images}}" alt="{{onePet.name}}" />
+    <img src="{{onePet.image}}" alt="{{onePet.name}}" />
   </picture>
   <p>Description: {{onePet.description}}</p>
   <p>Age: {{onePet.age}}</p>
@@ -12,6 +12,8 @@
   <p>Vaccinated: {{onePet.vaccinated}}</p>
   <p>Neutered: {{onePet.neutered}}</p>
   <p>Chipped: {{onePet.chipped}}</p>
-  <div><a href="/pets/{{onePet._id}}/edit">Edit</a></div>
-
+  {{!-- {{#if canEdit}} --}}
+  <div><a href="/pets/{{onePet.id}}/edit">Edit</a></div>
+  <div><a href="/pet/{{onePet.id}}/delete">Delete</a></div>
+  {{!-- {{/if}} --}}
 </div>

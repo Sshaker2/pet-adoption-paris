@@ -5,12 +5,10 @@ const petSchema = new Schema({
     type: String,
     required: true,
   },
-  images: [
-    {
+  image: {
       type: String,
       required: true,
     },
-  ],
   petType: {
     type: String,
     enum: ["cat", "dog"],

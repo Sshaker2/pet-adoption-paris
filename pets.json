@@ -1,7 +1,7 @@
 [
   {
     "name": "Rufus",
-    "images": "https://images.unsplash.com/photo-1615751072497-5f5169febe17",
+    "image": "https://images.unsplash.com/photo-1615751072497-5f5169febe17",
     "petType": "dog",
     "sex": "male",
     "age": 3,
@@ -14,7 +14,7 @@
   },
   {
     "name": "Shiro",
-    "images": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/White_Siberian_Husky_snow_2.jpg/2560px-White_Siberian_Husky_snow_2.jpg",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/White_Siberian_Husky_snow_2.jpg/2560px-White_Siberian_Husky_snow_2.jpg",
     "petType": "dog",
     "sex": "male",
     "age": 2,
@@ -27,7 +27,7 @@
   },
   {
     "name": "Juno",
-    "images": "link here",
+    "image": "link here",
     "petType": "dog",
     "sex": "male",
     "age": 6,
@@ -40,7 +40,7 @@
   },
   {
     "name": "Rajah",
-    "images": "link here",
+    "image": "link here",
     "petType": "dog",
     "sex": "male",
     "age": 3,
@@ -53,7 +53,7 @@
   },
   {
     "name": "Mina",
-    "images": "link here",
+    "image": "link here",
     "petType": "cat",
     "sex": "female",
     "age": 1,
@@ -66,7 +66,7 @@
   },
   {
     "name": "Peanut",
-    "images": "https://assets.findcatnames.com/wp-content/uploads/2017/10/orange-cat-names-2.jpg",
+    "image": "https://assets.findcatnames.com/wp-content/uploads/2017/10/orange-cat-names-2.jpg",
     "petType": "cat",
     "sex": "male",
     "age": 6,
@@ -79,7 +79,7 @@
   },
   {
     "name": "Dog",
-    "images": "https://media.cnn.com/api/v1/images/stellar/prod/191026122538-02-fat-cat-cinderblock-workout-northshore-trnd.jpg?q=x_2,y_0,h_1459,w_2593,c_crop/h_720,w_1280",
+    "image": "https://media.cnn.com/api/v1/images/stellar/prod/191026122538-02-fat-cat-cinderblock-workout-northshore-trnd.jpg?q=x_2,y_0,h_1459,w_2593,c_crop/h_720,w_1280",
     "petType": "cat",
     "sex": "male",
     "age": 5,

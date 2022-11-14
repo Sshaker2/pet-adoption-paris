@@ -1,11 +1,11 @@
-<form action="/pets/add" method="post" enctype="application/x-www-form-urlencoded">
+<form action="/pets/{{editPet.id}}/edit" method="post" enctype="application/x-www-form-urlencoded">
   <div>
     <label for="name">Name : </label>
-    <input type="text" id="name" name="name" />
+    <input value="{{editPet.name}}" type="text" id="name" name="name" />
   </div>
   <div>
     <label for="image">Image : </label>
-    <input type="text" id="image" name="image" />
+    <input value="{{editPet.image}}" type="text" id="image" name="image" />
   </div>
   <div>
     <label for="petType">Pet Type : </label>
@@ -25,16 +25,16 @@
   </div>
   <div>
     <label for="age">Age : </label>
-    <input type="number" id="age" name="age" />
+    <input value="{{editPet.age}}" type="number" id="age" name="age" />
   </div>
   <div>
     <label for="breed">Breed : </label>
-    <input type="text" id="breed" name="breed" />
+    <input value="{{editPet.breed}}" type="text" id="breed" name="breed" />
   </div>
   <div>
     <label for="vaccinated">Vaccinated : </label>
     <select name="vaccinated" id="vaccinated">
-            <option value="-1" selected disabled>Select</option>
+      <option value="-1" selected disabled>Select</option>
       <option value="yes">Yes</option>
       <option value="no">No</option>
     </select>
@@ -57,8 +57,8 @@
   </div>
   <div>
     <label for="description">Description : </label>
-    <input type="text" id="description" name="description" />
+    <input value="{{editPet.description}}" type="text" id="description" name="description" />
   </div>
-  <button>Add</button>
+  <button>Update</button>
 
 </form> 
