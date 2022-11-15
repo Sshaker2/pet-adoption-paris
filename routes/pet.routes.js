@@ -9,8 +9,8 @@ const router = require("express").Router();
 
 router.get("/", async (req, res, next) => {
   try {
-    const allPets = await Pet.find();
-    res.render("pets", { allPets });
+    const allPets = await Pet.find({ adopted: false});
+    res.render("pets", { allPets, title: 'Pets', style: ['layout.css', 'pets.css'] });
   } catch (error) {
     next(error);
   }
@@ -18,10 +18,10 @@ router.get("/", async (req, res, next) => {
 
 //Individual Pet Page
 //Pets already adopted
-router.get("/adopted", (req, res, next) => {
+router.get("/adopted", async(req, res, next) => {
   try {
-    console.log("hello");
-    res.render("already-adopted");
+    const adoptedPets = await Pet.find({ adopted: true});
+    res.render("already-adopted", { adoptedPets, title: 'Already Adopted', style: ['layout.css', 'already-adopted.css']});
   } catch (error) {
     next(error);
   }
@@ -30,7 +30,7 @@ router.get("/adopted", (req, res, next) => {
 //Add a Pet
 router.get("/add", (req, res, next) => {
   try {
-    res.render("add-pet");
+    res.render("add-pet", { title: 'Add a Pet', style: ['layout.css', 'add-pet.css']});
   } catch (error) {
     next(error);
   }
@@ -38,12 +38,9 @@ router.get("/add", (req, res, next) => {
 
 router.get("/:id", async (req, res, next) => {
   const { id } = req.params;
-  console.log(id);
-
   try {
     const onePet = await Pet.findById(id).populate("listedBy");
-    console.log(onePet);
-    res.render("one-pet", { onePet, script: true });
+    res.render("one-pet", { onePet, script: true, title: onePet.name, style: ['layout.css', 'one-pet.css'] });
   } catch (error) {
     next(error);
   }
@@ -56,9 +53,8 @@ router.get("/:id/edit", async (req, res, next) => {
   try {
     const { id } = req.params;
     const editPet = await Pet.findById(id);
-
     // const canEdit = editPet.listedBy.id === currentUser.id
-    res.render("edit-pet", { editPet });
+    res.render("edit-pet", { editPet, title: `Edit ${editPet.name}`, style: ['layout.css', 'edit-pet.css'] });
   } catch (error) {
     next(error);
   }

@@ -1,0 +1,17 @@
+<h2>ALL PETS</h2>
+<div>
+  {{#each adoptedPets}}
+
+    <div class="card">
+      <picture>
+        <img src="{{this.image}}" alt="{{this.name}}" />
+      </picture>
+      <p>Name: {{this.name}}</p>
+      <p>Age: {{this.age}}</p>
+
+      <p><a href="/pets/{{this._id}}">View more</a></p>
+
+    </div>
+
+  {{/each}}
+</div>
