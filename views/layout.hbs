@@ -4,25 +4,33 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>{{appTitle}}</title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <title>Pet Adoption Title</title>
+    <link rel="stylesheet" href="/stylesheets/" />
+
   </head>
 
   <body>
     <nav>
+      <picture>
+        <img src="../public/images/logo.jpg" alt="">
+      </picture>
       <ul>
-        <li><a href="/">HOME</a></li>
-        <li><a href="/about">ABOUT</a></li>
-        <li><a href="/pets">PETS</a></li>
-        <li><a href="/pets/add">ADD A PET</a></li>
-        <li><a href="/pets/adopted">ALREADY ADOPTED</a></li>
-        <li><a href="/auth/login">LOGIN</a></li>
-        <li><a href="/auth/signup">SIGNUP</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/pets">Pets</a></li>
+        <li><a href="/pets/add">Add a Pet</a></li>
+        <li><a href="/pets/adopted">Already Adopted</a></li>
+        <li><a href="/user/profile">Profile</a></li> 
+        <li><a href="/user/favorites">&hearts;</a></li>
+        <li><a href="/auth/login">Login</a></li>
+        <li><a href="/auth/signup">Signup</a></li>
       </ul>
     </nav>
-    {{{body}}}
 
+    {{{body}}}
+    {{#if script}}
     <script src="/js/script.js"></script>
+    {{/if}}
   </body>
 
 </html>
