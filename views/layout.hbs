@@ -12,7 +12,7 @@
   <body>
     <nav>
       <picture>
-        <img src="../public/images/logo.jpg" alt="">
+        <img src="../public/images/logo.jpg" alt="" />
       </picture>
       <ul>
         <li><a href="/">Home</a></li>
@@ -20,16 +20,23 @@
         <li><a href="/pets">Pets</a></li>
         <li><a href="/pets/add">Add a Pet</a></li>
         <li><a href="/pets/adopted">Already Adopted</a></li>
-        <li><a href="/user/profile">Profile</a></li> 
-        <li><a href="/user/favorites">&hearts;</a></li>
-        <li><a href="/auth/login">Login</a></li>
-        <li><a href="/auth/signup">Signup</a></li>
+
+        {{#if currentUser}}
+          <li><a href="/user/profile">Profile</a></li>
+          <li><a href="/user/favorites">&hearts;</a></li>
+          <li><a href="/auth/logout">Logout</a></li>
+        {{else}}
+          <li><a href="/auth/login">Login</a></li>
+          <li><a href="/auth/signup">Signup</a></li>
+
+        {{/if}}
+
       </ul>
     </nav>
 
     {{{body}}}
     {{#if script}}
-    <script src="/js/script.js"></script>
+      <script src="/js/script.js"></script>
     {{/if}}
   </body>
 
