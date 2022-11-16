@@ -13,7 +13,7 @@ const router = require("express").Router();
 router.get("/", async (req, res, next) => {
   try {
     const allPets = await Pet.find({ adopted: false });
-    const userFavs = await Favorite.find({ user: req.session.currentUser._id})
+    const userFavs = await Favorite.find({ user: req.session.currentUser?._id})
 
     userFavs.forEach(fav => {
       allPets.find(pet => pet.id === fav.favoritedPet.toString()).faved = true
