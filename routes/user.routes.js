@@ -4,6 +4,7 @@ const router = require("express").Router();
 const User = require("../models/User.model");
 const Pet = require("../models/Pet.model");
 const isLoggedIn = require("../middleware/isLoggedIn");
+const Favorite = require("../models/Favorite.model");
 
 //User profile
 
@@ -20,6 +21,43 @@ router.get("/profile", isLoggedIn, async (req, res, next) => {
   }
 })
 
+
+
+//Favourites
+router.get("/profile/favorites", async(req, res, next) => {
+  try {
+    const favorites = await Favorite.find({user: req.session.currentUser._id}).populate('favoritedPet')
+    res.render("favorites", { title: `Favorites of ${req.session.currentUser.username}`, style: ['layout.css', 'favorites.css'], favorites});
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post('/profile/favorites/:id/add', async(req,res,next) => {
+  try {
+    const { id } = req.params
+    const favQ = {favoritedPet: id, user: req.session.currentUser._id}
+
+    console.log(id, favQ)
+    const newFav = await Favorite.findOneAndUpdate(favQ, favQ, { upsert: true})
+     
+    res.sendStatus(200)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.post('/profile/favorites/:id/remove', async(req,res,next) => {
+  try {
+    const { id } = req.params
+    await Favorite.findOneAndRemove({favoritedPet: id, user: req.session.currentUser._id})
+   
+    res.sendStatus(204)
+  } catch (error) {
+    next(error)
+  }
+})
+
 router.get("/:username", async (req, res, next) => {
   const { username } = req.params;
   try {
@@ -31,14 +69,5 @@ router.get("/:username", async (req, res, next) => {
   }
 });
 
-//Favourites
-router.get("/:username/favorites", (req, res, next) => {
-  const { username } = req.params
-  try {
-    res.render("favorites", { title: `Favorites of ${username}`, style: ['layout.css', 'favorites.css']});
-  } catch (error) {
-    next(error);
-  }
-});
 
 module.exports = router;

@@ -1,7 +1,8 @@
 // ALL PET ROUTES PREFIXED WITH /pets
 
 const isLoggedIn = require("../middleware/isLoggedIn");
-const isOwner = require('../middleware/isOwner')
+const isOwner = require('../middleware/isOwner');
+const Favorite = require("../models/Favorite.model");
 const { findById, findByIdAndUpdate } = require("../models/Pet.model");
 const Pet = require("../models/Pet.model");
 
@@ -12,10 +13,17 @@ const router = require("express").Router();
 router.get("/", async (req, res, next) => {
   try {
     const allPets = await Pet.find({ adopted: false });
+    const userFavs = await Favorite.find({ user: req.session.currentUser._id})
+
+    userFavs.forEach(fav => {
+      allPets.find(pet => pet.id === fav.favoritedPet.toString()).faved = true
+    })
     res.render("pets", {
       allPets,
+      script: ["pets.js"],
       title: "Pets",
       style: ["layout.css", "pets.css"],
+
     });
   } catch (error) {
     next(error);
@@ -57,7 +65,7 @@ router.get("/:id", async(req, res, next) => {
     if(req.session.currentUser?.username === onePet.listedBy.username) {
       return res.render("one-pet", {
       onePet,
-      script: true,
+      script: ["one-pet.js"],
       title: onePet.name,
       style: ["layout.css", "one-pet.css"],
       isOwner: true
@@ -120,6 +128,7 @@ router.post("/add", async (req, res, next) => {
       neutered,
       chipped,
       description,
+      adopted: false,
       listedBy,
     });
 
