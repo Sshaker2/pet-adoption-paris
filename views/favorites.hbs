@@ -1,5 +1,27 @@
-<h2>favorites</h2>
+<h2>Favorites</h2>
+<div class="favorite-pets">
+  {{#each favorites}}
 
-{{#each favorites}}
-<p>{{this.favoritedPet.name}}</p>
-{{/each}}
+    <div class="card">
+      <picture>
+        <img src="{{this.favoritedPet.image}}" alt="{{this.favoritedPet.name}}" />
+      </picture>
+      <div class="card-content">
+        <div>
+        <p>{{this.favoritedPet.name}}</p>
+        <p>Age: {{this.favoritedPet.age}}</p>
+        <p>Sex: {{this.favoritedPet.sex}}</p>
+        <p><a href="/pets/{{this.favoritedPet.id}}">More</a></p>
+      </div>
+      <div 
+     {{#if this.faved}} 
+      class="favorite-container heart-full"
+      {{else}}
+      class="favorite-container heart-empty"
+      {{/if}}
+       data-id={{this.id}}></div>
+      </div>
+    </div>
+
+  {{/each}}
+</div>

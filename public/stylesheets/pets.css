@@ -7,6 +7,7 @@
     justify-content: center;
     align-items: center;
     background-color: white;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.371);
 }
 
 .card > picture > img {
@@ -19,13 +20,16 @@
 .all-pets {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-around;
 
+
+    row-gap: 30px;
+    column-gap: 30px;
+    padding-bottom: 50px;
+    margin: 0 20px;
 }
 
 h2 {
-    margin: 20px 0 60px 20px;
+    margin: 40px 0 40px 30px;
 }
 
 body {

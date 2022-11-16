@@ -1,7 +1,7 @@
 .card {
-    height: 300px;
-    width: 225px;
-
+    height: 400px;
+    width: 325px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.371);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -11,8 +11,8 @@
 
 .card > picture > img {
     padding-top: 10px;
-    height: 200px;
-    width: 200px;
+    height: 290px;
+    width: 300px;
     object-fit: cover;
 }
 

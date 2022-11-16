@@ -156,6 +156,7 @@ router.post("/:id", async (req, res, next) => {
 });
 
 router.post("/:id/edit", async (req, res, next) => {
+  console.log('HIIII')
   const { id } = req.params;
   try {
     const updatePet = await Pet.findByIdAndUpdate(id, req.body, { new: true });
