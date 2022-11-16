@@ -57,9 +57,18 @@ module.exports = (app) => {
       secret: process.env.SESSION_SECRET || "super hyper secret key",
       resave: false,
       saveUninitialized: false,
+      cookie: {
+        httpOnly: true,
+        maxAge: 1200000 / 2,
+      },
       store: MongoStore.create({
         mongoUrl: MONGO_URI,
       }),
     })
   );
+  // middle ware for making the user available to all templates
+  app.use((req, res, next) => {
+    res.locals.currentUser = req.session.currentUser;
+    next();
+  });
 };
