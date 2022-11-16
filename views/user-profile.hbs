@@ -1,1 +1,11 @@
-<h2>User profile</h2>
+<h2>{{foundUser.username}}</h2>
+<div class="container">
+  {{#each foundPet}}
+    <p>{{this.name}}</p>
+    <picture>
+      <img src="{{this.image}}" alt="{{this.name}}" />
+    </picture>
+    <p><a href="/pets/{{this._id}}">View more</a></p>
+
+  {{/each}}
+</div>

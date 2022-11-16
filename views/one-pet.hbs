@@ -12,8 +12,26 @@
   <p>Vaccinated: {{onePet.vaccinated}}</p>
   <p>Neutered: {{onePet.neutered}}</p>
   <p>Chipped: {{onePet.chipped}}</p>
+  <p>Listed by:
+    <a
+      href="/user/{{onePet.listedBy.username}}"
+    >{{onePet.listedBy.username}}</a></p>
   {{!-- {{#if canEdit}} --}}
   <div><a href="/pets/{{onePet.id}}/edit">Edit</a></div>
-  <div><a href="/pet/{{onePet.id}}/delete">Delete</a></div>
+  <div id="delete-button">Delete</div>
   {{!-- {{/if}} --}}
+</div>
+
+<div id="delete-form" hidden>
+  <h2>Please provide a reason</h2>
+  <form action="/pets/{{onePet.id}}" method="post">
+    <select name="deleteReason" id="deleteReason">
+      <option value="alreadyAdopted">Already adopted</option>
+      <option value="remove">Changed mind</option>
+      <option value="remove">Other</option>
+    </select>
+    <div id="cancel-button">Cancel</div>
+    <button>Proceed</button>
+
+  </form>
 </div>

@@ -1,16 +1,15 @@
-<h2>ALL PETS</h2>
-<div>
+<h2>ALL PETS READY FOR ADOPTION</h2>
+<div class="all-pets">
   {{#each allPets}}
 
     <div class="card">
       <picture>
         <img src="{{this.image}}" alt="{{this.name}}" />
       </picture>
-      <p>Name: {{this.name}}</p>
+      <p>{{this.name}}</p>
       <p>Age: {{this.age}}</p>
-
-      <p><a href="/pets/{{this._id}}">View more</a></p>
-
+      <p>Sex: {{this.sex}}</p>
+      <p><a href="/pets/{{this.id}}">More</a></p>
     </div>
 
   {{/each}}
