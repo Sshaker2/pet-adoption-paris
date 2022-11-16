@@ -16,10 +16,10 @@
     <a
       href="/user/{{onePet.listedBy.username}}"
     >{{onePet.listedBy.username}}</a></p>
-  {{!-- {{#if canEdit}} --}}
-  <div><a href="/pets/{{onePet.id}}/edit">Edit</a></div>
-  <div id="delete-button"><a href="javascript:void(0)">Delete</a></div>
-  {{!-- {{/if}} --}}
+  {{#if isOwner}}
+  <div><a href="/pets/{{onePet.id}}/edit" class="editBtns">Edit</a></div>
+  <div id="delete-button"><a href="javascript:void(0)" class="editBtns">Delete</a></div>
+  {{/if}}
 </div>
 
 <div id="delete-form" hidden>
