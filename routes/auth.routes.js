@@ -22,6 +22,7 @@ router.get("/signup", isLoggedOut, (req, res) => {
 
 // GET /auth/login
 router.get("/login", isLoggedOut, (req, res) => {
+  // const { showRedirectMsg } = req.session;
   res.render("auth/login");
 });
 
