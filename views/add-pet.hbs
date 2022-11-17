@@ -1,22 +1,20 @@
 
-
-<section>
-  <form action="/pets/add" method="post" enctype="multipart/form-data">
+<section class="add-pet-section">
+  <form action="/pets/add" class="add-pet-form" method="post" enctype="multipart/form-data">
+  <h2>Add a Pet</h2>
     <div>
-      <label for="name">Name : </label>
-      <input type="text" id="name" name="name" />
+      <label for="name">Name: </label>
+      <input type="text" id="name" name="name" placeholder="Enter pet's name" />
     </div>
     <div>
-      <label for="image">Image : </label>
+      <label for="picture">Image: </label>
       {{! <input type="text" id="image" name="image" /> }}
-      <div>
         <input type="file" name="picture" id="actual-btn" />
         {{! <label for="actual-btn">Choose File</label>
         <span id="file-chosen">No file chosen</span> }}
-      </div>
     </div>
     <div>
-      <label for="petType">Pet Type : </label>
+      <label for="petType">Pet Type: </label>
       <select name="petType" id="petType">
         <option value="-1" selected disabled>Select</option>
         <option value="cat">Cat</option>
@@ -24,7 +22,7 @@
       </select>
     </div>
     <div>
-      <label for="sex">Sex : </label>
+      <label for="sex">Sex: </label>
       <select name="sex" id="sex">
         <option value="-1" selected disabled>Select</option>
         <option value="male">Male</option>
@@ -32,15 +30,15 @@
       </select>
     </div>
     <div>
-      <label for="age">Age : </label>
-      <input type="number" id="age" name="age" />
+      <label for="age">Age: </label>
+      <input type="number" id="age" name="age" placeholder="Enter pet's age"  />
     </div>
     <div>
-      <label for="breed">Breed : </label>
-      <input type="text" id="breed" name="breed" />
+      <label for="breed">Breed: </label>
+      <input type="text" id="breed" name="breed" placeholder="Enter pet's breed" />
     </div>
     <div>
-      <label for="vaccinated">Vaccinated : </label>
+      <label for="vaccinated">Vaccinated: </label>
       <select name="vaccinated" id="vaccinated">
         <option value="-1" selected disabled>Select</option>
         <option value="yes">Yes</option>
@@ -48,7 +46,7 @@
       </select>
     </div>
     <div>
-      <label for="neutered">Neutered : </label>
+      <label for="neutered">Neutered: </label>
       <select name="neutered" id="neutered">
         <option value="-1" selected disabled>Select</option>
         <option value="yes">Yes</option>
@@ -56,7 +54,7 @@
       </select>
     </div>
     <div>
-      <label for="chipped">Chipped : </label>
+      <label for="chipped">Chipped: </label>
       <select name="chipped" id="chipped">
         <option value="-1" selected disabled>Select</option>
         <option value="yes">Yes</option>
@@ -64,11 +62,13 @@
       </select>
     </div>
     <div>
-      <label for="description">Description : </label>
-      <input type="text" id="description" name="description" />
+      <label for="description">Description: </label>
+      <input type="text" id="description" name="description" placeholder="Enter pet description"/>
     </div>
     <button>Add</button>
-
+        {{#if errorMessage}}
+      <p class="error">{{errorMessage}}</p>
+    {{/if}}
   </form>
 </section>
 

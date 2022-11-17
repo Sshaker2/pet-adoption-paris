@@ -10,7 +10,7 @@
       <picture>
         <img src="{{this.favoritedPet.image}}" alt="{{this.favoritedPet.name}}" />
         {{#if ../currentUser}}
-          <div class="favorite-container heart-full" data-id={{this.id}}> </div>
+          <div class="favorite-container heart-full" data-id={{this.favoritedPet._id}}> </div>
         {{/if}}
       </picture>
 

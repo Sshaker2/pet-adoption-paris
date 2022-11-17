@@ -8,6 +8,8 @@ const pets = require("./../pets.json")
 const User = require("./../models/User.model")
 const mongoose = require("mongoose")
 const bcrypt = require("bcrypt")
+const Favorite = require("../models/Favorite.model")
+const Session = require("../models/Session.model")
 require("dotenv").config()
 require("../db")
 
@@ -49,4 +51,6 @@ async function seed() {
 async function clearDatabase() {
     await Pet.deleteMany()
     await User.deleteMany()
+    await Favorite.deleteMany()
+    await Session.deleteMany()
 }

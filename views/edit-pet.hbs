@@ -1,14 +1,20 @@
-<form action="/pets/{{editPet.id}}/edit" method="post" enctype="application/x-www-form-urlencoded">
+
+<section class="edit-pet-section">
+<form action="/pets/{{editPet.id}}/edit" class="edit-pet-form" method="post" enctype="multipart/form-data">
+<h2>Update Pet Information</h2>
   <div>
-    <label for="name">Name : </label>
+    <label for="name">Name: </label>
     <input value="{{editPet.name}}" type="text" id="name" name="name" />
   </div>
   <div>
-    <label for="image">Image : </label>
-    <input value="{{editPet.image}}" type="text" id="image" name="image" />
+      <label for="picture">Image: </label>
+      {{! <input type="text" id="image" name="image" /> }}
+        <input type="file" name="picture" id="actual-btn" />
+        {{! <label for="actual-btn">Choose File</label>
+        <span id="file-chosen">No file chosen</span> }}
   </div>
   <div>
-    <label for="petType">Pet Type : </label>
+    <label for="petType">Pet Type: </label>
     <select name="petType" id="petType">
       <option value="-1" disabled>Select</option>
       <option value="cat">Cat</option>
@@ -16,7 +22,7 @@
     </select>
   </div>
   <div>
-    <label for="sex">Sex : </label>
+    <label for="sex">Sex: </label>
     <select name="sex" id="sex">
       <option value="-1" disabled>Select</option>
       <option value="male">Male</option>
@@ -24,15 +30,15 @@
     </select>
   </div>
   <div>
-    <label for="age">Age : </label>
+    <label for="age">Age: </label>
     <input value="{{editPet.age}}" type="number" id="age" name="age" />
   </div>
   <div>
-    <label for="breed">Breed : </label>
+    <label for="breed">Breed: </label>
     <input value="{{editPet.breed}}" type="text" id="breed" name="breed" />
   </div>
   <div>
-    <label for="vaccinated">Vaccinated : </label>
+    <label for="vaccinated">Vaccinated:  </label>
     <select name="vaccinated" id="vaccinated">
       <option value="-1" selected disabled>Select</option>
       <option value="yes">Yes</option>
@@ -40,7 +46,7 @@
     </select>
   </div>
   <div>
-    <label for="neutered">Neutered : </label>
+    <label for="neutered">Neutered: </label>
     <select name="neutered" id="neutered">
       <option value="-1" selected disabled>Select</option>
       <option value="yes">Yes</option>
@@ -48,7 +54,7 @@
     </select>
   </div>
   <div>
-    <label for="chipped">Chipped : </label>
+    <label for="chipped">Chipped: </label>
     <select name="chipped" id="chipped">
       <option value="-1" selected disabled>Select</option>
       <option value="yes">Yes</option>
@@ -56,9 +62,9 @@
     </select>
   </div>
   <div>
-    <label for="description">Description : </label>
+    <label for="description">Description: </label>
     <input value="{{editPet.description}}" type="text" id="description" name="description" />
   </div>
   <button>Update</button>
-
 </form> 
+</section>

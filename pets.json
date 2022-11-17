@@ -113,7 +113,7 @@
     "vaccinated": "yes",
     "neutered": "yes",
     "chipped": "yes",
-    "description": "Call if interested",
-    "adopted": true
+    "description": "Yes, Lassie like in the movie",
+    "adopted": false
   }
 ]

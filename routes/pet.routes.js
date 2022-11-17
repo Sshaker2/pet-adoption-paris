@@ -93,6 +93,7 @@ router.get("/:id", async (req, res, next) => {
 //we want to render the add pet but with the prefilled form of details of the pet
 
 router.get("/:id/edit", isLoggedIn, isOwner, async (req, res, next) => {
+  console.log("test")
   try {
     const { id } = req.params;
     const editPet = await Pet.findById(id);
@@ -108,6 +109,7 @@ router.get("/:id/edit", isLoggedIn, isOwner, async (req, res, next) => {
 });
 
 router.post("/add", uploader.single("picture"), async (req, res, next) => {
+  console.log(req.body)
   const {
     name,
     // image,
@@ -121,6 +123,21 @@ router.post("/add", uploader.single("picture"), async (req, res, next) => {
     description,
   } = req.body;
   const listedBy = req.session.currentUser;
+  if (
+    name === "" ||
+    !req.file ||
+    !petType ||
+    !sex  ||
+    age === "" ||
+    breed === "" ||
+    !vaccinated ||
+    !neutered ||
+    !chipped
+  ) { 
+    return res.status(400).render("add-pet", {
+      errorMessage: "All fields are mandatory.", title: 'Add pet', style: ['layout.css', 'add-pet.css'],
+    });
+  } 
 
   try {
     const newPet = await Pet.create({
@@ -161,11 +178,19 @@ router.post("/:id", async (req, res, next) => {
   }
 });
 
-router.post("/:id/edit", async (req, res, next) => {
-  console.log("HIIII");
+router.post("/:id/edit", uploader.single("picture"), async (req, res, next) => {
+  console.log("HIIII"); //we get the hi
+  console.log(req.body)
+  let picture
+ if (req.file) {
+  picture = req.file.path
+ }
+ const data = {
+  ...req.body, image: picture
+ }
   const { id } = req.params;
   try {
-    const updatePet = await Pet.findByIdAndUpdate(id, req.body, { new: true });
+    const updatePet = await Pet.findByIdAndUpdate(id, data, { new: true });
     res.redirect(`/pets/${id}`);
   } catch (error) {
     next(error);
