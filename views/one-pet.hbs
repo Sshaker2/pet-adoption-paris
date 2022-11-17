@@ -1,19 +1,45 @@
 <h1>{{onePet.name}}</h1>
-<div class="card">
-  <picture>
-    <img src="{{onePet.image}}" alt="{{onePet.name}}" />
-  </picture>
-  <p>Description: {{onePet.description}}</p>
-  <p>Age: {{onePet.age}}</p>
-  <p>Type: {{onePet.petType}}</p>
-  <p>Sex: {{onePet.sex}}</p>
-  <p>Breed: {{onePet.breed}}</p>
-  <p>Medical Info: </p>
-  <p>Vaccinated: {{onePet.vaccinated}}</p>
-  <p>Neutered: {{onePet.neutered}}</p>
-  <p>Chipped: {{onePet.chipped}}</p>
-  {{!-- {{#if canEdit}} --}}
-  <div><a href="/pets/{{onePet.id}}/edit">Edit</a></div>
-  <div><a href="/pet/{{onePet.id}}/delete">Delete</a></div>
-  {{!-- {{/if}} --}}
+<div class="all-pets">
+  <div class="card">
+
+    <picture>
+      <img src="{{onePet.image}}" alt="{{onePet.name}}" />
+    </picture>
+
+    <div class="card-content">
+      <p>Description: {{onePet.description}}</p>
+      <p>Age: {{onePet.age}}</p>
+      <p>Type: {{onePet.petType}}</p>
+      <p>Sex: {{onePet.sex}}</p>
+      <p>Breed: {{onePet.breed}}</p>
+      <p>Medical Info: </p>
+      <p>Vaccinated: {{onePet.vaccinated}}</p>
+      <p>Neutered: {{onePet.neutered}}</p>
+      <p>Chipped: {{onePet.chipped}}</p>
+      <p>Listed by:
+        <a href="/user/{{onePet.listedBy.username}}">{{onePet.listedBy.username}}</a>
+      </p>
+
+      {{#if isOwner}}
+      <div><a href="/pets/{{onePet.id}}/edit" class="editBtns">Edit</a></div>
+      <div id="delete-button"><a href="javascript:void(0)" class="editBtns">Delete</a></div>
+      {{/if}}
+
+    </div>
+
+  </div>
+</div>
+
+<div id="delete-form" hidden>
+  <h2>Please provide a reason</h2>
+  <form action="/pets/{{onePet.id}}" method="post">
+    <select name="deleteReason" id="deleteReason">
+      <option value="alreadyAdopted">Already adopted</option>
+      <option value="remove">Changed mind</option>
+      <option value="remove">Other</option>
+    </select>
+    <div id="cancel-button">Cancel</div>
+    <button>Proceed</button>
+
+  </form>
 </div>

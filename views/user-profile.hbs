@@ -1,1 +1,38 @@
-<h2>User profile</h2>
+<div class="user-details">
+<h2>{{foundUser.username}}</h2>
+  <picture><img src="{{foundUser.image}}" alt="{{foundUser.username}}"></picture>
+  <p>Email: {{foundUser.email}}</p>
+  <p>Phone Number: {{foundUser.phoneNumber}}</p>
+  <p>Member since: {{foundUser.formatedCreatedAt}}</p>
+</div>
+
+<div class="all-pets">
+  {{#each foundPet}}
+
+    <div class="card">
+
+      <picture>
+        <img src="{{this.image}}" alt="{{this.name}}" />
+        {{#if ../currentUser}}
+        {{#unless ../isMyOwnProfile}}
+          <div 
+            {{#if this.faved}}
+            class="favorite-container heart-full"
+            {{else}}
+            class="favorite-container heart-empty"
+            {{/if}}
+            data-id={{this.id}}>
+          </div>
+        {{/unless}}
+        {{/if}}
+      </picture>
+
+      <div class="card-content">
+        <p class="name">{{this.name}}</p>
+        <p class="description">Age: {{this.age}}  Sex: {{this.sex}}</p>
+        <a href="/pets/{{this.id}}">More</a>
+      </div>
+    </div>
+
+  {{/each}}
+</div>

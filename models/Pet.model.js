@@ -6,9 +6,9 @@ const petSchema = new Schema({
     required: true,
   },
   image: {
-      type: String,
-      required: true,
-    },
+    type: String,
+    required: true,
+  },
   petType: {
     type: String,
     enum: ["cat", "dog"],
@@ -48,7 +48,7 @@ const petSchema = new Schema({
   adopted: {
     type: Boolean,
   },
-  listedBy: { type: Schema.Types.ObjectId, ref: "User" },
+  listedBy: { type: Schema.Types.ObjectId, ref: "User", required: true },
 });
 
 const Pet = model("Pet", petSchema);

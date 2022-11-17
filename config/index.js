@@ -59,7 +59,9 @@ module.exports = (app) => {
       saveUninitialized: false,
       cookie: {
         httpOnly: true,
-        maxAge: 1200000,
+
+        maxAge: 5 * 3600000, // 5 times 1 hour :D
+
       },
       store: MongoStore.create({
         mongoUrl: MONGO_URI,

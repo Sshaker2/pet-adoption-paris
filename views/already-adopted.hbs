@@ -1,0 +1,20 @@
+<h2>PETS WHO FOUND A HOME</h2>
+<div class="all-pets">
+  {{#each adoptedPets}}
+
+    <div class="card">
+
+      <picture>
+        <img src="{{this.image}}" alt="{{this.name}}" />
+      </picture>
+
+      <div class="card-content">
+        <p class="name">{{this.name}}</p>
+        <p class="description">Age: {{this.age}}  Sex: {{this.sex}}</p>
+        <a href="/pets/{{this.id}}">More</a>
+      </div>
+
+    </div>
+
+  {{/each}}
+</div>

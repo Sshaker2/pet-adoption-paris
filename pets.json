@@ -27,7 +27,7 @@
   },
   {
     "name": "Juno",
-    "image": "link here",
+    "image": "https://www.chiens-de-france.com/photo/chiens/2018_08/chiens-Staffordshire-Bull-Terrier-5fddc276-b0d6-65c4-651a-5cd7b508917d_min.jpg",
     "petType": "dog",
     "sex": "male",
     "age": 6,
@@ -40,7 +40,7 @@
   },
   {
     "name": "Rajah",
-    "image": "link here",
+    "image": "https://external-preview.redd.it/ib_o0enpGikfFi7V014u-SZK9ZVnwxo8x0m6wbp4Ktw.jpg?auto=webp&s=280321c9a29c8a940d2be6f06979c2a5d68aebf7",
     "petType": "dog",
     "sex": "male",
     "age": 3,
@@ -53,20 +53,20 @@
   },
   {
     "name": "Mina",
-    "image": "link here",
+    "image": "https://preview.redd.it/4c0k7jno7f821.jpg?auto=webp&s=efc47b0b5066e84641c56a83f710cd1f07f4a026",
     "petType": "cat",
     "sex": "female",
-    "age": 1,
+    "age": 3,
     "breed": "Tabby",
     "vaccinated": "yes",
     "neutered": "yes",
     "chipped": "yes",
-    "description": "Very young, affectionate and good with kids",
+    "description": "Found on the street. Probably ran away from home and is lost, please help to find her a family she can't live on the street",
     "adopted": false
   },
   {
     "name": "Peanut",
-    "image": "https://assets.findcatnames.com/wp-content/uploads/2017/10/orange-cat-names-2.jpg",
+    "image": "https://i.redd.it/yain0sfw4bl71.jpg",
     "petType": "cat",
     "sex": "male",
     "age": 6,
@@ -88,6 +88,32 @@
     "neutered": "yes",
     "chipped": "yes",
     "description": "Do not be fooled by the name, this is actually a cat.",
+    "adopted": true
+  },
+  {
+    "name": "Tara",
+    "image": "https://preview.redd.it/ktfzer7pymy01.jpg?auto=webp&s=d87ca43c0427a74c8d572e4a2e07077d72506c31",
+    "petType": "dog",
+    "sex": "female",
+    "age": 2,
+    "breed": "Rottweiler",
+    "vaccinated": "yes",
+    "neutered": "yes",
+    "chipped": "yes",
+    "description": "Super friendly and obedient",
+    "adopted": true
+  },
+  {
+    "name": "Lassie",
+    "image": "https://external-preview.redd.it/bD4DBLoMCwz_KSwcRnn8-SFySuVwrioggIqNjZjbvsk.jpg?auto=webp&s=1a3348d4ebbd1f0fbd8ce432505be18bd613447a",
+    "petType": "dog",
+    "sex": "female",
+    "age": 5,
+    "breed": "Border collie",
+    "vaccinated": "yes",
+    "neutered": "yes",
+    "chipped": "yes",
+    "description": "Call if interested",
     "adopted": true
   }
 ]
