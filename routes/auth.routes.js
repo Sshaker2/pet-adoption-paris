@@ -18,13 +18,13 @@ const isLoggedIn = require("../middleware/isLoggedIn");
 
 // GET /auth/signup
 router.get("/signup", isLoggedOut, (req, res) => {
-  res.render("auth/signup");
+  res.render("auth/signup", { title: 'Sign Up', style: ['layout.css', 'signup.css']});
 });
 
 // GET /auth/login
 router.get("/login", isLoggedOut, (req, res) => {
   // const { showRedirectMsg } = req.session;
-  res.render("auth/login");
+  res.render("auth/login", { title: 'Login', style: ['layout.css', 'login.css']});
 });
 
 // POST /auth/signup

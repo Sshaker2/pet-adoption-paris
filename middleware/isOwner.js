@@ -7,7 +7,6 @@ module.exports = async (req, res, next) => {
     if (foundPet.listedBy.toString() === req.session.currentUser._id.toString()) {
       return next();
     } else {
-        console.log('hi hey hi')
         res.redirect(`/pets/${id}`)
     }
   };

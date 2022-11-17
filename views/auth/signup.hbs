@@ -1,31 +1,38 @@
 <div id="form">
+  <form action="/auth/signup" class="signup-form" method="POST" enctype="multipart/form-data">
   <h2>Sign Up</h2>
-  <form action="/auth/signup" method="POST" enctype="multipart/form-data">
 
+    <div>
     <label>
       Username
       <input type="text" name="username" placeholder="Your username" />
     </label>
+  </div>
 
+  <div>
     <label for="picture">Image :
     </label>
     <input type="file" name="picture" />
+</div>
 
+<div>
     <label>
       Email
       <input type="email" name="email" placeholder="Your email" />
     </label>
-
+</div>
+<div>
     <label>
       Phone number
       <input type="text" name="phoneNumber" placeholder="Your phone number" />
     </label>
-
+</div>
+<div>
     <label>
       Password
       <input type="password" name="password" placeholder="Your password" />
     </label>
-
+</div>
     <button type="submit">Sign Up</button>
 
     {{#if errorMessage}}
