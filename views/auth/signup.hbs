@@ -1,12 +1,12 @@
-<div id="form">
+<div class="form">
   <form action="/auth/signup" class="signup-form" method="POST" enctype="multipart/form-data">
   <h2>Sign Up</h2>
 
     <div>
-    <label>
+    <label for="username">
       Username
-      <input type="text" name="username" placeholder="Your username" />
     </label>
+    <input type="text" name="username" placeholder="Your username" id="username"/>
   </div>
 
   <div>
@@ -16,22 +16,22 @@
 </div>
 
 <div>
-    <label>
+    <label for="email">
       Email
-      <input type="email" name="email" placeholder="Your email" />
     </label>
+      <input type="email" oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Please enter a valid email')" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" name="email" placeholder="Your email" id="email" />
 </div>
 <div>
-    <label>
+    <label for="phoneNumber">
       Phone number
-      <input type="text" name="phoneNumber" placeholder="Your phone number" />
     </label>
+      <input type="text" name="phoneNumber" placeholder="Your phone number" id="phoneNumber"/>
 </div>
 <div>
-    <label>
+    <label for="password">
       Password
-      <input type="password" name="password" placeholder="Your password" />
     </label>
+      <input type="password" name="password" placeholder="Your password" id="password" />
 </div>
     <button type="submit">Sign Up</button>
 

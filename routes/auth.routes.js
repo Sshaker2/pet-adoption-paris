@@ -41,6 +41,7 @@ router.post("/signup", uploader.single("picture"), (req, res, next) => {
     res.status(400).render("auth/signup", {
       errorMessage:
         "All fields are mandatory. Please provide your username, email , password and phone number.",
+        title: 'Sign Up', style: ['layout.css', 'signup.css']
     });
 
     return;
@@ -68,7 +69,7 @@ router.post("/signup", uploader.single("picture"), (req, res, next) => {
         email,
         password: hashedPassword,
         phoneNumber,
-        profilePic: req.file.path,
+        profilePic: req.file?.path,
       });
     })
     .then((user) => {

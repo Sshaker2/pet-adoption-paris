@@ -11,7 +11,7 @@ const userSchema = new Schema(
     },
     profilePic: {
       type: String,
-      default: 'someurlhere',
+      default: 'https://feedback.seekingalpha.com/s/cache/de/78/de78e9935bff951d65afb37417f4c136.png',
     },
     email: {
       type: String,
