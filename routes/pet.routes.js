@@ -61,7 +61,8 @@ router.get("/add", isLoggedIn, (req, res, next) => {
 router.get("/:id", async(req, res, next) => {
   const { id } = req.params;
   try {
-    const onePet = await Pet.findById(id).populate("listedBy");
+    const onePet = await Pet.findById(id).populate("listedBy")
+    console.log(onePet.listedBy.username);
     if(req.session.currentUser?.username === onePet.listedBy.username) {
       return res.render("one-pet", {
       onePet,
