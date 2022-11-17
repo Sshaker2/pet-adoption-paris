@@ -1,10 +1,15 @@
 // ALL PET ROUTES PREFIXED WITH /pets
 
 const isLoggedIn = require("../middleware/isLoggedIn");
+
+const uploader = require("../config/cloudinary");
+
+
 const isOwner = require('../middleware/isOwner');
 const Favorite = require("../models/Favorite.model");
-const { findById, findByIdAndUpdate } = require("../models/Pet.model");
+
 const Pet = require("../models/Pet.model");
+
 
 const router = require("express").Router();
 
@@ -34,12 +39,14 @@ router.get("/", async (req, res, next) => {
 //Pets already adopted
 router.get("/adopted", async (req, res, next) => {
   try {
+
     const adoptedPets = await Pet.find({ adopted: true });
     res.render("already-adopted", {
       adoptedPets,
       title: "Already Adopted",
       style: ["layout.css", "already-adopted.css"],
     });
+
   } catch (error) {
     next(error);
   }
@@ -61,8 +68,9 @@ router.get("/add", isLoggedIn, (req, res, next) => {
 router.get("/:id", async(req, res, next) => {
   const { id } = req.params;
   try {
+
     const onePet = await Pet.findById(id).populate("listedBy")
-    console.log(onePet.listedBy.username);
+   
     if(req.session.currentUser?.username === onePet.listedBy.username) {
       return res.render("one-pet", {
       onePet,
@@ -71,6 +79,7 @@ router.get("/:id", async(req, res, next) => {
       style: ["layout.css", "one-pet.css"],
       isOwner: true
       })
+
     }
     res.render("one-pet", {
       onePet,
@@ -86,6 +95,7 @@ router.get("/:id", async(req, res, next) => {
 //Edit pet route
 //we want to render the add pet but with the prefilled form of details of the pet
 
+
 router.get("/:id/edit", isLoggedIn, isOwner, async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -96,17 +106,16 @@ router.get("/:id/edit", isLoggedIn, isOwner, async (req, res, next) => {
       title: `Edit ${editPet.name}`,
       style: ["layout.css", "edit-pet.css"],
     });
+
   } catch (error) {
     next(error);
   }
 });
 
-
-router.post("/add", async (req, res, next) => {
-  console.log(req.body);
+router.post("/add", upload.single("picture"), async (req, res, next) => {
   const {
     name,
-    image,
+    // image,
     petType,
     sex,
     age,
@@ -117,10 +126,11 @@ router.post("/add", async (req, res, next) => {
     description,
   } = req.body;
   const listedBy = req.session.currentUser;
+
   try {
     const newPet = await Pet.create({
       name,
-      image,
+      image: req.file.path,
       petType,
       sex,
       age,
@@ -139,6 +149,7 @@ router.post("/add", async (req, res, next) => {
   }
 });
 
+
 router.post("/:id", async (req, res, next) => {
   try {
     const { deleteReason } = req.body;
@@ -151,10 +162,12 @@ router.post("/:id", async (req, res, next) => {
       await Pet.findByIdAndRemove(id);
       res.redirect("/user/profile");
     }
+
   } catch (error) {
     next(error);
   }
 });
+
 
 router.post("/:id/edit", async (req, res, next) => {
   console.log('HIIII')
@@ -166,5 +179,6 @@ router.post("/:id/edit", async (req, res, next) => {
     next(error);
   }
 });
+
 
 module.exports = router;

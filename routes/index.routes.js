@@ -2,7 +2,11 @@ const express = require("express");
 const router = express.Router();
 
 router.use("/pets", require("./pet.routes"));
+
 router.use("/user", require("./user.routes"));
+
+
+
 /* GET home page */
 router.get("/", (req, res, next) => {
   // req.session.showRedirectMsg = false;
