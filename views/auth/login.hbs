@@ -1,20 +1,20 @@
-<div class="login-form-container">
+<section class="login-form-container">
   <h2>Log In</h2>
   <form action="/auth/login" class="login-form" method="POST">
-  
-  <div>
-    <label for="username">
-      Username
-    </label>
+
+    <div>
+      <label for="username">
+        Username
+      </label>
       <input type="text" name="username" placeholder="Your username" id="username"/>
     </div>
 
     <div>
-    <label for="password">
-      Password
-    </label>
+      <label for="password">
+        Password
+      </label>
       <input type="password" name="password" placeholder="Your password" id="password" />
-  </div>
+    </div>
     <button type="submit">Log In</button>
 
     {{#if errorMessage}}
@@ -24,4 +24,4 @@
       <p class="error">{{redirectMessage}}</p>
     {{/if}}
   </form>
-</div>
+</section>

@@ -1,8 +1,14 @@
 .about {
-    margin: 50px 20vw;
+    margin: auto;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    text-align: center;
+    font-size: 20px;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(20px);
+    padding: 15px;
+    width: 70vw;
 }
 
 ol {
@@ -10,6 +16,5 @@ ol {
 }
 
 img {
-    width: fit-content;
-    height: 500px;
+    width: 100%;
 }

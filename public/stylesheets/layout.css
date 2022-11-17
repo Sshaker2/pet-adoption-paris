@@ -8,7 +8,10 @@
 }
 
 body {
-  background-color: rgb(249, 249, 191);
+  background-image: url("https://picjumbo.com/wp-content/uploads/sunset-in-grass.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 nav {
@@ -56,6 +59,7 @@ ul {
 
 h2 {
   margin: 40px 0 40px 30px;
+  text-align: center;
 }
 
 .all-pets {
@@ -63,7 +67,7 @@ h2 {
   justify-content: center;
   flex-wrap: wrap;
   gap: 30px;
-  margin: 0 20px;
+  margin: 20px;
 }
 
 .card {

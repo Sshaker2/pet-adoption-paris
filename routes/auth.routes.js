@@ -52,8 +52,9 @@ router.post("/signup", uploader.single("picture"), (req, res, next) => {
   const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
   if (!regex.test(password)) {
     res.status(400).render("auth/signup", {
-      errorMessage:
-        "Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.",
+      errorMessage: "Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.",
+      title: 'Sign Up',
+      style: ['layout.css', 'signup.css'],
     });
     return;
   }
@@ -77,11 +78,16 @@ router.post("/signup", uploader.single("picture"), (req, res, next) => {
     })
     .catch((error) => {
       if (error instanceof mongoose.Error.ValidationError) {
-        res.status(500).render("auth/signup", { errorMessage: error.message });
+        res.status(500).render("auth/signup", {
+          errorMessage: error.message,
+          title: 'Sign Up',
+          style: ['layout.css', 'signup.css'],
+        });
       } else if (error.code === 11000) {
         res.status(500).render("auth/signup", {
-          errorMessage:
-            "Username and email need to be unique. Provide a valid username or email.",
+          errorMessage: "Username and email need to be unique. Provide a valid username or email.",
+          title: 'Sign Up',
+          style: ['layout.css', 'signup.css'],
         });
       } else {
         next(error);
@@ -96,10 +102,10 @@ router.post("/login", isLoggedOut, (req, res, next) => {
   // Check that username, email, and password are provided
   if (username === "" || password === "") {
     res.status(400).render("auth/login", {
-      errorMessage:
-        "All fields are mandatory. Please provide username, email and password.",
+      errorMessage: "All fields are mandatory. Please provide username, email and password.",
+      title: 'Log In',
+      style: ['layout.css', 'login.css'],
     });
-
     return;
   }
 
@@ -108,9 +114,11 @@ router.post("/login", isLoggedOut, (req, res, next) => {
     .then((user) => {
       // If the user isn't found, send an error message that user provided wrong credentials
       if (!user) {
-        res
-          .status(400)
-          .render("auth/login", { errorMessage: "Wrong credentials." });
+        res.status(400).render("auth/login", {
+          errorMessage: "Wrong credentials.",
+          title: 'Log In',
+          style: ['layout.css', 'login.css'],
+        });
         return;
       }
 
@@ -119,9 +127,11 @@ router.post("/login", isLoggedOut, (req, res, next) => {
         .compare(password, user.password)
         .then((isSamePassword) => {
           if (!isSamePassword) {
-            res
-              .status(400)
-              .render("auth/login", { errorMessage: "Wrong credentials." });
+            res.status(400).render("auth/login", {
+              errorMessage: "Wrong credentials.",
+              title: 'Log In',
+              style: ['layout.css', 'login.css'],
+            });
             return;
           }
 

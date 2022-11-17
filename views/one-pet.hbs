@@ -1,47 +1,82 @@
-<section class="one-pet-container">
-<h1>{{onePet.name}}</h1>
-<div class="one-pet">
+<section class="all-pets">
   <div class="card">
 
     <picture>
       <img src="{{onePet.image}}" alt="{{onePet.name}}" />
+      {{#unless onePet.adopted}}
+      {{#if currentUser}}
+        <div
+          {{#if onePet.faved}}
+          class="favorite-container heart-full"
+          {{else}}
+          class="favorite-container heart-empty"
+          {{/if}}
+          data-id={{onePet.id}}>
+        </div>
+      {{/if}}
+      {{/unless}}
     </picture>
 
     <div class="card-content">
-      <p>Description: {{onePet.description}}</p>
-      <p>Age: {{onePet.age}}</p>
-      <p>Type: {{onePet.petType}}</p>
-      <p>Sex: {{onePet.sex}}</p>
-      <p>Breed: {{onePet.breed}}</p>
-      <p>Medical Info: </p>
-      <p>Vaccinated: {{onePet.vaccinated}}</p>
-      <p>Neutered: {{onePet.neutered}}</p>
-      <p>Chipped: {{onePet.chipped}}</p>
-      <p>Listed by:
-        <a href="/user/{{onePet.listedBy.username}}">{{onePet.listedBy.username}}</a>
-      </p>
+        <p class="name">{{onePet.name}}</p>
+        <p>Age: {{onePet.age}}</p>
+    </div>
 
-      {{#if isOwner}}
-      <div><a href="/pets/{{onePet.id}}/edit" class="editBtns">Edit</a></div>
-      <div id="delete-button"><a href="javascript:void(0)" class="editBtns">Delete</a></div>
-      {{/if}}
+  </div>
+
+  <div class="card details">
+
+    <div class="card-content">
+      <div class="description">
+        <h3>"{{onePet.description}}"</h3>
+        <span>-<a href="/user/{{onePet.listedBy.username}}">{{onePet.listedBy.username}}</a></span>
+      </div>
+      <div class="bullets">
+        <div>
+          <p>Age: {{onePet.age}}</p>
+          <p>Type: {{onePet.petType}}</p>
+          <p>Sex: {{onePet.sex}}</p>
+          <p>Breed: {{onePet.breed}}</p>
+        </div>
+        <div>
+          <p>Medical Info: </p>
+          <p>Vaccinated: {{onePet.vaccinated}}</p>
+          <p>Neutered: {{onePet.neutered}}</p>
+          <p>Chipped: {{onePet.chipped}}</p>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <div class="actions">
+          {{#unless onePet.adopted}}
+          {{#if isOwner}}
+            <div><a href="/pets/{{onePet.id}}/edit" class="editBtns">Edit</a></div>
+            <div id="delete-button"><a href="javascript:void(0)" class="editBtns">Delete</a></div>
+          {{/if}}
+          {{/unless}}
+        </div>
+      </div>
 
     </div>
 
   </div>
-</div>
 
-<div id="delete-form" hidden>
-  <h2>Please provide a reason</h2>
-  <form action="/pets/{{onePet.id}}" method="post">
-    <select name="deleteReason" id="deleteReason">
-      <option value="alreadyAdopted">Already adopted</option>
-      <option value="remove">Changed mind</option>
-      <option value="remove">Other</option>
-    </select>
-    <div id="cancel-button">Cancel</div>
-    <button>Proceed</button>
-
-  </form>
-</div>
 </section>
+
+<div id="delete-form" class="hide">
+  <div class="delete-content">
+    <h2>Please provide a reason</h2>
+    <form action="/pets/{{onePet.id}}" method="post">
+      <select name="deleteReason" id="deleteReason" required>
+        <option value="">Select a reason</option>
+        <option value="alreadyAdopted">Already adopted</option>
+        <option value="remove">Changed mind</option>
+        <option value="remove">Other</option>
+      </select>
+      <div class="actions">
+        <div id="cancel-button">Cancel</div>
+        <button>Proceed</button>
+      </div>
+    </form>
+  </div>
+</div>

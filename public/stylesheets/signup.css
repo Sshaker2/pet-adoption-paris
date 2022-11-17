@@ -28,25 +28,20 @@ body {
   align-items: center;
   position: relative;
   margin: 0 auto;
-  margin-right: 0;
   font-size: 1.2rem;
-  height: 100%;
 }
 
 .signup-form div {
   width: 70%;
+  display: flex;
+  justify-content: space-between;
 }
 
 input,
 select {
-  width: 80%;
+  width: 70%;
   height: 30px;
   font-size: .9rem;
-}
-
-label {
-  position: absolute;
-  left: 0;
 }
 
 h2 {
@@ -60,4 +55,5 @@ button {
   background-color: black;
   color: white;
   margin-top: 15px;
+  border: none;
 }

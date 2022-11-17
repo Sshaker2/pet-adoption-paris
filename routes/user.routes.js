@@ -10,7 +10,6 @@ const Favorite = require("../models/Favorite.model");
 
 router.get("/profile", isLoggedIn, async (req, res, next) => {
   const loggedUser = req.session.currentUser
-  console.log(loggedUser)
   try {
     const foundUser = await User.findOne({
       username: loggedUser.username})
@@ -50,9 +49,8 @@ router.post('/profile/favorites/:id/add', async(req,res,next) => {
     const { id } = req.params
     const favQ = {favoritedPet: id, user: req.session.currentUser._id}
 
-    console.log(id, favQ)
-    const newFav = await Favorite.findOneAndUpdate(favQ, favQ, { upsert: true})
-     
+    await Favorite.findOneAndUpdate(favQ, favQ, { upsert: true})
+
     res.sendStatus(200)
   } catch (error) {
     next(error)
@@ -63,7 +61,7 @@ router.post('/profile/favorites/:id/remove', async(req,res,next) => {
   try {
     const { id } = req.params
     await Favorite.findOneAndRemove({favoritedPet: id, user: req.session.currentUser._id})
-   
+
     res.sendStatus(204)
   } catch (error) {
     next(error)

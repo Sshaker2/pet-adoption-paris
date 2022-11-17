@@ -1,8 +1,3 @@
-// https://developer.mozilla.org/en-US/docs/Web/API/Window/DOMContentLoaded_event
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("pet-adoption-paris JS imported successfully!");
-});
-
 const deleteForm = document.querySelector("#delete-form");
 const deleteButton = document.querySelector("#delete-button");
 const cancelButton = document.querySelector("#cancel-button");
@@ -13,10 +8,9 @@ cancelButton.addEventListener("click", handleCancel);
 
 function handleDeleteForm() {
   deleteForm.hidden = !deleteForm.hidden;
+  deleteForm.classList.toggle('hide');
 }
 
 function handleCancel() {
-  deleteForm.hidden = true;
+  deleteForm.classList.toggle('hide');
 }
-
-

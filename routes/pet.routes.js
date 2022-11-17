@@ -70,9 +70,15 @@ router.get("/:id", async (req, res, next) => {
     const onePet = await Pet.findById(id).populate("listedBy");
 
     if (req.session.currentUser?.username === onePet.listedBy.username) {
+      const userFavs = await Favorite.find({
+        user: req.session.currentUser?._id,
+      });
+
+      onePet.faved = userFavs.find(item => item.favoritedPet.toString() === onePet.id);
+
       return res.render("one-pet", {
         onePet,
-        script: ["one-pet.js"],
+        script: ["pets.js", "one-pet.js"],
         title: onePet.name,
         style: ["layout.css", "one-pet.css"],
         isOwner: true,
@@ -80,7 +86,7 @@ router.get("/:id", async (req, res, next) => {
     }
     res.render("one-pet", {
       onePet,
-      script: true,
+      script: ["pets.js"],
       title: onePet.name,
       style: ["layout.css", "one-pet.css"],
     });
@@ -93,7 +99,6 @@ router.get("/:id", async (req, res, next) => {
 //we want to render the add pet but with the prefilled form of details of the pet
 
 router.get("/:id/edit", isLoggedIn, isOwner, async (req, res, next) => {
-  console.log("test");
   try {
     const { id } = req.params;
     const editPet = await Pet.findById(id);
@@ -180,8 +185,6 @@ router.post("/:id", async (req, res, next) => {
 });
 
 router.post("/:id/edit", uploader.single("picture"), async (req, res, next) => {
-  console.log("HIIII"); //we get the hi
-  console.log(req.body);
   let picture;
   if (req.file) {
     picture = req.file.path;
