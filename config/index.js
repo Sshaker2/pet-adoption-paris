@@ -59,7 +59,7 @@ module.exports = (app) => {
       saveUninitialized: false,
       cookie: {
         httpOnly: true,
-        maxAge: 1200000 / 2,
+        maxAge: 1200000,
       },
       store: MongoStore.create({
         mongoUrl: MONGO_URI,

@@ -1,8 +1,10 @@
 // ALL PET ROUTES PREFIXED WITH /pets
 
-const { findById } = require("../models/Pet.model");
-const Pet = require("../models/Pet.model");
+const isLoggedIn = require("../middleware/isLoggedIn");
+const isOwner = require("../middleware/isOwner");
 
+const Pet = require("../models/Pet.model");
+const uploader = require("../config/cloudinary");
 
 const router = require("express").Router();
 
@@ -21,7 +23,7 @@ router.get("/", async (req, res, next) => {
 //Pets already adopted
 router.get("/adopted", (req, res, next) => {
   try {
-    console.log("hello")
+    console.log("hello");
     res.render("already-adopted");
   } catch (error) {
     next(error);
@@ -42,8 +44,22 @@ router.get("/:id", async (req, res, next) => {
   console.log(id);
 
   try {
-    const onePet = await Pet.findById(id);
-    res.render("one-pet", { onePet });
+    const onePet = await Pet.findById(id).populate("listedBy");
+    if (req.session.currentUser?.username === onePet.listedBy.username) {
+      return res.render("one-pet", {
+        onePet,
+        script: true,
+        title: onePet.name,
+        style: ["layout.css", "one-pet.css"],
+        isOwner: true,
+      });
+    }
+    res.render("one-pet", {
+      onePet,
+      script: true,
+      title: onePet.name,
+      style: ["layout.css", "one-pet.css"],
+    });
   } catch (error) {
     next(error);
   }
@@ -52,42 +68,42 @@ router.get("/:id", async (req, res, next) => {
 //Edit pet route
 //we want to render the add pet but with the prefilled form of details of the pet
 
-router.get('/:id/edit', async(req, res, next) => {
+router.get("/:id/edit", async (req, res, next) => {
   try {
     const { id } = req.params;
-    const editPet = await Pet.findById(id)
+    const editPet = await Pet.findById(id);
 
     // const canEdit = editPet.listedBy.id === currentUser.id
-    res.render("edit-pet", { editPet })
+    res.render("edit-pet", { editPet });
   } catch (error) {
-    next(error)
+    next(error);
   }
-})
+});
 
-router.get('/:id/delete', async(req, res, next) => {
+router.get("/:id/delete", async (req, res, next) => {
   try {
-    const { id } = req.params
-    const deletePet = await Pet.findById(id)
-    res.render('delete-reason')
+    const { id } = req.params;
+    const deletePet = await Pet.findById(id);
+    res.render("delete-reason");
   } catch (error) {
-    next(error)
+    next(error);
   }
-})
+});
 
 // router.post('/:id/delete', async(req, res, next) => {
 //   try {
-    
+
 //   } catch (error) {
 //     next(error)
 //   }
 // })
 
-
-router.post('/add', async (req, res, next) => {
-  console.log(req.body)
-    const {
+router.post("/add", upload.single("picture"), async (req, res, next) => {
+  console.log(req.file.path);
+  console.log(req.body);
+  const {
     name,
-    image,
+    // image,
     petType,
     sex,
     age,
@@ -97,11 +113,11 @@ router.post('/add', async (req, res, next) => {
     chipped,
     description,
   } = req.body;
-  // .listedBy = session.currentUser 
+  // .listedBy = session.currentUser
   try {
     const newPet = await Pet.create({
       name,
-      image,
+      image: req.file.path,
       petType,
       sex,
       age,
@@ -110,23 +126,22 @@ router.post('/add', async (req, res, next) => {
       neutered,
       chipped,
       description,
-      listedBy: session.currentUser
+      listedBy: session.currentUser,
     });
     res.redirect(`/pets/${newPet._id}`);
   } catch (error) {
-    next(error)
+    next(error);
   }
-})
+});
 
-router.post('/:id/edit', async (req, res, next) => {
-  const { id } = req.params
+router.post("/:id/edit", async (req, res, next) => {
+  const { id } = req.params;
   try {
-    const updatePet = await Pet.findByIdAndUpdate(id, req.body, { new: true})
-    res.redirect(`/pets/${id}`)
+    const updatePet = await Pet.findByIdAndUpdate(id, req.body, { new: true });
+    res.redirect(`/pets/${id}`);
   } catch (error) {
-    next(error)
+    next(error);
   }
-})
-
+});
 
 module.exports = router;
