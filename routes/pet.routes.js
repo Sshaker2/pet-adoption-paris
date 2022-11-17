@@ -109,7 +109,10 @@ router.get("/:id/edit", isLoggedIn, isOwner, async (req, res, next) => {
 });
 
 router.post("/add", uploader.single("picture"), async (req, res, next) => {
+<<<<<<< Updated upstream
   console.log(req.body)
+=======
+>>>>>>> Stashed changes
   const {
     name,
     // image,
@@ -178,6 +181,7 @@ router.post("/:id", async (req, res, next) => {
   }
 });
 
+<<<<<<< Updated upstream
 router.post("/:id/edit", uploader.single("picture"), async (req, res, next) => {
   console.log("HIIII"); //we get the hi
   console.log(req.body)
@@ -188,6 +192,10 @@ router.post("/:id/edit", uploader.single("picture"), async (req, res, next) => {
  const data = {
   ...req.body, image: picture
  }
+=======
+router.post("/:id/edit", async (req, res, next) => {
+  console.log("HIIII");
+>>>>>>> Stashed changes
   const { id } = req.params;
   try {
     const updatePet = await Pet.findByIdAndUpdate(id, data, { new: true });
