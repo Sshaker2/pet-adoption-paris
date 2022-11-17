@@ -3,23 +3,34 @@
   <picture><img src="{{foundUser.image}}" alt="{{foundUser.username}}"></picture>
   <p>Email: {{foundUser.email}}</p>
   <p>Phone Number: {{foundUser.phoneNumber}}</p>
-  <p>Member since: {{foundUser.createdAt}}</p>
+  <p>Member since: {{foundUser.formatedCreatedAt}}</p>
 </div>
 
-<div class="user-pets">
+<div class="all-pets">
   {{#each foundPet}}
 
     <div class="card">
+
       <picture>
         <img src="{{this.image}}" alt="{{this.name}}" />
+        {{#if ../currentUser}}
+        {{#unless ../isMyOwnProfile}}
+          <div 
+            {{#if this.faved}}
+            class="favorite-container heart-full"
+            {{else}}
+            class="favorite-container heart-empty"
+            {{/if}}
+            data-id={{this.id}}>
+          </div>
+        {{/unless}}
+        {{/if}}
       </picture>
+
       <div class="card-content">
-        <div>
-        <p>{{this.name}}</p>
-        <p>Age: {{this.age}}</p>
-        <p>Sex: {{this.sex}}</p>
-        <p><a href="/pets/{{this.id}}">More</a></p>
-      </div>
+        <p class="name">{{this.name}}</p>
+        <p class="description">Age: {{this.age}}  Sex: {{this.sex}}</p>
+        <a href="/pets/{{this.id}}">More</a>
       </div>
     </div>
 

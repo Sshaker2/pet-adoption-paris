@@ -14,8 +14,20 @@ router.get("/profile", isLoggedIn, async (req, res, next) => {
   try {
     const foundUser = await User.findOne({
       username: loggedUser.username})
-      const foundPet = await Pet.find({ listedBy: foundUser.id });
-      res.render("user-profile", { foundUser, foundPet, title: foundUser.username, style: ['layout.css', 'user-profile.css'] });
+    const foundPet = await Pet.find({ listedBy: foundUser.id });
+    foundUser.formatedCreatedAt = new Intl.DateTimeFormat('default', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
+    }).format(foundUser.createdAt);
+
+    res.render("user-profile", {
+      foundUser,
+      foundPet,
+      title: foundUser.username,
+      style: ['layout.css', 'user-profile.css'],
+      isMyOwnProfile: true,
+    });
   } catch (error) {
     next(error)
   }
@@ -27,7 +39,7 @@ router.get("/profile", isLoggedIn, async (req, res, next) => {
 router.get("/profile/favorites", async(req, res, next) => {
   try {
     const favorites = await Favorite.find({user: req.session.currentUser._id}).populate('favoritedPet')
-    res.render("favorites", { title: `Favorites of ${req.session.currentUser.username}`, style: ['layout.css', 'favorites.css'], favorites});
+    res.render("favorites", { title: `Favorites of ${req.session.currentUser.username}`, style: ['layout.css', 'favorites.css'], script: ['pets.js'], favorites});
   } catch (error) {
     next(error);
   }
@@ -62,8 +74,26 @@ router.get("/:username", async (req, res, next) => {
   const { username } = req.params;
   try {
     const foundUser = await User.findOne({ username: username });
-    const foundPet = await Pet.find({ listedBy: foundUser.id });
-    res.render("user-profile", { foundUser, foundPet, title: foundUser.username, style: ['layout.css', 'user-profile.css'] });
+    const foundPet = await Pet.find({ listedBy: foundUser.id, adopted: false });
+    const userFavs = await Favorite.find({ user: req.session.currentUser?._id});
+
+    userFavs.forEach(fav => {
+      foundPet.find(pet => pet.id === fav.favoritedPet.toString()).faved = true
+    });
+
+    foundUser.formatedCreatedAt = new Intl.DateTimeFormat('default', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
+    }).format(foundUser.createdAt);
+
+    res.render("user-profile", {
+      foundUser,
+      foundPet,
+      title: foundUser.username,
+      style: ['layout.css', 'user-profile.css'],
+      script: ['pets.js'],
+    });
   } catch (error) {
     next(error);
   }

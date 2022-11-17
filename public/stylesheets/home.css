@@ -2,7 +2,7 @@ body {
     background-color: black;
 }
 
-.all-pets {
+.section-pets {
     width: 100vw;
     height: 800px;
     background-image: url("/images/section-1-bg.jpeg");
@@ -12,7 +12,7 @@ body {
 
 }   
 
-.already-adopted {
+.section-adopted {
     width: 100vw;
     height: 800px;
     background-image: url("/images/section-2-bg.jpeg");

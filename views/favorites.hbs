@@ -1,25 +1,23 @@
 <h2>Favorites</h2>
-<div class="favorite-pets">
+<div class="all-pets">
+  {{#unless favorites.length}}
+    <span>No favorites :(</span>
+  {{/unless}}
   {{#each favorites}}
 
     <div class="card">
+      
       <picture>
         <img src="{{this.favoritedPet.image}}" alt="{{this.favoritedPet.name}}" />
+        {{#if ../currentUser}}
+          <div class="favorite-container heart-full" data-id={{this.id}}> </div>
+        {{/if}}
       </picture>
+
       <div class="card-content">
-        <div>
-        <p>{{this.favoritedPet.name}}</p>
-        <p>Age: {{this.favoritedPet.age}}</p>
-        <p>Sex: {{this.favoritedPet.sex}}</p>
-        <p><a href="/pets/{{this.favoritedPet.id}}">More</a></p>
-      </div>
-      <div 
-     {{#if this.faved}} 
-      class="favorite-container heart-full"
-      {{else}}
-      class="favorite-container heart-empty"
-      {{/if}}
-       data-id={{this.id}}></div>
+        <p class="name">{{this.name}}</p>
+        <p class="description">Age: {{this.age}}  Sex: {{this.sex}}</p>
+        <a href="/pets/{{this.id}}">More</a>
       </div>
     </div>
 

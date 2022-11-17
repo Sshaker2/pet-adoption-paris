@@ -8,6 +8,7 @@ heartButtons.forEach(heartButton =>
 async function handleFavorite(e) {
     const heartButton = e.target;
     heartButton.classList.toggle('heart-full')
+    heartButton.classList.toggle('heart-empty')
     console.log(heartButton.dataset)
     if(heartButton.classList.contains('heart-full')) {
         await axios.post(`/user/profile/favorites/${heartButton.dataset.id}/add`)

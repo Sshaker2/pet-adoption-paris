@@ -3,23 +3,25 @@
   {{#each allPets}}
 
     <div class="card">
+      
       <picture>
         <img src="{{this.image}}" alt="{{this.name}}" />
+        {{#if ../currentUser}}
+          <div 
+            {{#if this.faved}}
+            class="favorite-container heart-full"
+            {{else}}
+            class="favorite-container heart-empty"
+            {{/if}}
+            data-id={{this.id}}>
+          </div>
+        {{/if}}
       </picture>
+
       <div class="card-content">
-        <div>
-        <p>{{this.name}}</p>
-        <p>Age: {{this.age}}</p>
-        <p>Sex: {{this.sex}}</p>
-        <p><a href="/pets/{{this.id}}">More</a></p>
-      </div>
-      <div 
-     {{#if this.faved}}
-      class="favorite-container heart-full"
-      {{else}}
-      class="favorite-container heart-empty"
-      {{/if}}
-       data-id={{this.id}}></div>
+        <p class="name">{{this.name}}</p>
+        <p class="description">Age: {{this.age}}  Sex: {{this.sex}}</p>
+        <a href="/pets/{{this.id}}">More</a>
       </div>
     </div>
 
