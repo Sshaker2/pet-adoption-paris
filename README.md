@@ -19,6 +19,4 @@ This is our second project during Week 6 of the Ironhack Bootcamp. It is a site 
 - Adding multiple images for each pet
 - Better User experience
 
-## Link to the Web Application
-
-https://rescue-me-paris.onrender.com/
+## Link to the Web Application (https://rescue-me-paris.onrender.com/)
